@@ -1,0 +1,2 @@
+/Users/zainmehmood/StudioProjects/Mindful-App-main/android/app/.cxx/Debug/w4j1t255/arm64-v8a/CMakeFiles/edit_cache.dir
+/Users/zainmehmood/StudioProjects/Mindful-App-main/android/app/.cxx/Debug/w4j1t255/arm64-v8a/CMakeFiles/rebuild_cache.dir
