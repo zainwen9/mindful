@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "26005611530",
-    "project_id": "supercool-mental-health-app",
-    "storage_bucket": "supercool-mental-health-app.appspot.com"
+    "project_number": "1014762818808",
+    "project_id": "minful",
+    "storage_bucket": "minful.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:26005611530:android:f364ad5830ec01123babf3",
+        "mobilesdk_app_id": "1:1014762818808:android:0a6f3e4142cd007f8fbf0d",
         "android_client_info": {
           "package_name": "com.example.mental_health"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDtBfaYDFM6e3NC-C5D0wkX7rKhzEmtdc8"
+          "current_key": "AIzaSyCp8gYgcsqDQ3sgaRa4wjsq23fWM4cvLmw"
         }
       ],
       "services": {

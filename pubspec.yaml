@@ -10,7 +10,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   google_fonts:
   rename_app: ^1.6.1
-  flutter_bloc: ^8.1.6
+  flutter_bloc: ^9.1.0
   audio_video_progress_bar:
   http: ^1.2.2
   dio: ^5.7.0
@@ -25,7 +25,7 @@ dependencies:
   cloud_firestore: ^5.4.3
   tflite_flutter: ^0.11.0
   camera:
-  image: ^3.1.0
+  image: ^4.5.4
   google_generative_ai:
   intl:
   google_mlkit_face_detection:
@@ -40,8 +40,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
-  flutter_launcher_icons: ^0.11.0
+  flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.14.3
   build_runner:
   hive_generator:
   font_awesome_flutter:

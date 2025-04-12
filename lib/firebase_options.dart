@@ -50,19 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDtBfaYDFM6e3NC-C5D0wkX7rKhzEmtdc8',
-    appId: '1:26005611530:android:f364ad5830ec01123babf3',
-    messagingSenderId: '26005611530',
-    projectId: 'supercool-mental-health-app',
-    storageBucket: 'supercool-mental-health-app.appspot.com',
+    apiKey: 'AIzaSyCp8gYgcsqDQ3sgaRa4wjsq23fWM4cvLmw',
+    appId: '1:1014762818808:android:0a6f3e4142cd007f8fbf0d',
+    messagingSenderId: '1014762818808',
+    projectId: 'minful',
+    storageBucket: 'minful.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBm1xIoI0UNPNa4v-soQIF48V7uo9gVk9Q',
-    appId: '1:26005611530:ios:8e9d2a72b078ba223babf3',
-    messagingSenderId: '26005611530',
-    projectId: 'supercool-mental-health-app',
-    storageBucket: 'supercool-mental-health-app.appspot.com',
+    apiKey: 'AIzaSyCh6mIboqwDd-IlgVmd8yWG2Dw_1Q5e4fQ',
+    appId: '1:1014762818808:ios:c8786b8504f84baf8fbf0d',
+    messagingSenderId: '1014762818808',
+    projectId: 'minful',
+    storageBucket: 'minful.firebasestorage.app',
     iosBundleId: 'com.example.mentalHealth',
   );
+
 }

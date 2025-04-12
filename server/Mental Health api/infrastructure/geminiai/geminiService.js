@@ -42,7 +42,7 @@ const model = genAi.getGenerativeModel({model: "gemini-1.5-flash"});
 // const apiToken = LAMA_API_KEY;
 // const llamaAPI = new LlamaAI(apiToken);
 
-GROQ_LLAMA_KEY="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"
+GROQ_LLAMA_KEY="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"
 const { Groq } = require('groq-sdk');
 
 const groq = new Groq({ apiKey:GROQ_LLAMA_KEY });
