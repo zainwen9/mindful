@@ -17,7 +17,7 @@ class SongRemoteDataSourceImpl implements SongRemoteDataSource {
   @override
   Future<List<Song>> getAllSongs() async {
     final response = await client
-        .get(Uri.parse('https://mindful-app-47s6.onrender.com/songs/all'));
+        .get(Uri.parse('https://mindful-5gru.onrender.com/songs/all'));
     if (response.statusCode == 200) {
       List jsonResponse = json.decode(response.body);
       List finalRes = [];

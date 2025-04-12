@@ -17,7 +17,7 @@ class MeditationRemoteDataSourceImpl implements MeditaionRemoteDataSource {
   @override
   Future<DailyQuoteModel> getDailyQuote() async {
     final response = await client.get(Uri.parse(
-        'https://mindful-app-47s6.onrender.com/meditation/dailyQuotes'));
+        'https://mindful-5gru.onrender.com/meditation/dailyQuotes'));
 
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);
@@ -31,7 +31,7 @@ class MeditationRemoteDataSourceImpl implements MeditaionRemoteDataSource {
   @override
   Future<MoodMessageModel> getMoodMessage(String mood) async {
     final response = await client.get(Uri.parse(
-        'https://mindful-app-47s6.onrender.com/meditation/myMood/$mood'));
+        'https://mindful-5gru.onrender.com/meditation/myMood/$mood'));
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);
 
@@ -44,7 +44,7 @@ class MeditationRemoteDataSourceImpl implements MeditaionRemoteDataSource {
   @override
   Future<MoodDataModel> getmoodData(String username) async {
     final response = await client
-        .get(Uri.parse('https://mindful-app-47s6.onrender.com/user/$username'));
+        .get(Uri.parse('https://mindful-5gru.onrender.com/user/$username'));
 
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);
