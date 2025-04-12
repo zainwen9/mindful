@@ -27,11 +27,18 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     super.initState();
-
+    _controller = VideoPlayerController.asset('assets/background_model.mp4')
+      ..initialize().then((_) {
+        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+        setState(() {
+          _controller.play();
+          _controller.setLooping(true);
+        });
+      });
   }
 
   var scrollController = ScrollController();
-  static const apiKey = "AIzaSyDv5CugKqpf44FaB_jlIvMFI0BEEj8niig";
+  static const apiKey = "AIzaSyAN_rYAOnXKfeevWg1dgWQ5qvH-n9ZtQVE";
   final model = GenerativeModel(model: 'gemini-2.0-flash', apiKey: apiKey);
 
   final List<Message> _messages = [];
@@ -99,9 +106,9 @@ class _ChatScreenState extends State<ChatScreen> {
         Center(
           child: _controller.value.isInitialized
               ? AspectRatio(
-                  aspectRatio: _controller.value.aspectRatio,
-                  child: VideoPlayer(_controller),
-                )
+            aspectRatio: _controller.value.aspectRatio,
+            child: VideoPlayer(_controller),
+          )
               : Container(),
         ),
         Column(
@@ -109,21 +116,21 @@ class _ChatScreenState extends State<ChatScreen> {
           children: [
             Expanded(
                 child: Align(
-              alignment: Alignment.topCenter,
-              child: ListView.builder(
-                  shrinkWrap: true,
-                  // reverse: true,
-                  controller: scrollController,
-                  scrollDirection: Axis.vertical,
-                  itemCount: _messages.length,
-                  itemBuilder: (context, index) {
-                    final message = _messages[index];
-                    return Messages(
-                        isUser: message.isUser,
-                        message: message.message,
-                        date: DateFormat('HH:mm').format(message.date));
-                  }),
-            )),
+                  alignment: Alignment.topCenter,
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      // reverse: true,
+                      controller: scrollController,
+                      scrollDirection: Axis.vertical,
+                      itemCount: _messages.length,
+                      itemBuilder: (context, index) {
+                        final message = _messages[index];
+                        return Messages(
+                            isUser: message.isUser,
+                            message: message.message,
+                            date: DateFormat('HH:mm').format(message.date));
+                      }),
+                )),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -159,7 +166,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             label: const Text(
                               'Ask Me Anything',
                               style:
-                                  TextStyle(fontSize: 16, color: Colors.white),
+                              TextStyle(fontSize: 16, color: Colors.white),
                             )),
                       ),
                     ),
@@ -169,7 +176,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       iconSize: 30,
                       style: ButtonStyle(
                           foregroundColor:
-                              WidgetStateProperty.all(Colors.white),
+                          WidgetStateProperty.all(Colors.white),
                           shape: WidgetStateProperty.all(const CircleBorder())),
                       onPressed: () {
                         Future.delayed(const Duration(seconds: 4));
@@ -205,9 +212,9 @@ class Messages extends StatelessWidget {
 
   const Messages(
       {super.key,
-      required this.isUser,
-      required this.message,
-      required this.date});
+        required this.isUser,
+        required this.message,
+        required this.date});
 
   @override
   Widget build(BuildContext context) {

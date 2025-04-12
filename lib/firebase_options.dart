@@ -63,6 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1014762818808',
     projectId: 'minful',
     storageBucket: 'minful.firebasestorage.app',
+    iosClientId: '1014762818808-co70ra71r1gjlofqpckrqocte8hq6a9u.apps.googleusercontent.com',
     iosBundleId: 'com.example.mentalHealth',
   );
 
