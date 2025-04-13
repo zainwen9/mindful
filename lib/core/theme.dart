@@ -43,27 +43,27 @@ class AppTheme {
         ),
         titleSmall: GoogleFonts.alegreyaSans(
           fontSize: FontSizes.large,
-          color: Colors.black,
+          color: Colors.white,
         ),
         titleMedium: GoogleFonts.alegreyaSans(
           fontSize: FontSizes.extraLarge,
-          color: Colors.black,
+          color: Colors.white,
         ),
         titleLarge: GoogleFonts.alegreyaSans(
             fontSize: FontSizes.doubleExtraLarge,
-            color: Colors.black,
+            color: Colors.white,
             fontWeight: FontWeight.bold),
         labelSmall: GoogleFonts.alegreyaSans(
           fontSize: FontSizes.small,
-          color: Colors.black,
+          color: Colors.white,
         ),
         labelMedium: GoogleFonts.alegreyaSans(
           fontSize: FontSizes.extraLarge,
-          color: Colors.black,
+          color: Colors.white,
         ),
         labelLarge: GoogleFonts.alegreyaSans(
             fontSize: FontSizes.doubleExtraLarge,
-            color: Colors.black,
+            color: Colors.white,
             fontWeight: FontWeight.bold),
       ),
     );

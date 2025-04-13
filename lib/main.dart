@@ -19,6 +19,7 @@ import 'package:mental_health/firebase_options.dart';
 import 'package:mental_health/presentation/bottomNavBar/bloc/nav_bloc.dart';
 import 'package:mental_health/presentation/homePage/home_page.dart';
 import 'package:mental_health/presentation/onboarding/onboarding.dart';
+import 'package:mental_health/presentation/splashScreen/splashScreen.dart';
 import 'injections.dart' as di;
 
 void main() async {
@@ -83,8 +84,8 @@ class _MyAppState extends State<MyApp> {
         home: (FirebaseAuth.instance.currentUser == null)
             ? google
                 ? const inPage()
-                : const Onboarding()
-            : HomePage(),
+                : const SplashScreenView()
+           : HomePage(),
       ),
     );
   }

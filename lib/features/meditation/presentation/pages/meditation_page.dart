@@ -18,6 +18,7 @@ import 'package:mental_health/features/meditation/presentation/bloc/mood_message
 import 'package:mental_health/features/meditation/presentation/widgets/moods.dart';
 import 'package:mental_health/features/meditation/presentation/widgets/task_card.dart';
 import 'package:mental_health/presentation/chat_screen/chat_with_ai.dart';
+import 'package:mental_health/resources/app_colors.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../../../core/theme.dart';
@@ -340,24 +341,22 @@ class _MeditationPageState extends State<MeditationPage> {
     final mybox = Hive.box('firstime');
     String valobatained = mybox.get('firsttime');
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: ColorManager.backgroundColor,
       appBar: AppBar(
-        backgroundColor: DefaultColors.white,
+        backgroundColor: ColorManager.backgroundColor,
         centerTitle: true,
         title: const Text(
           "Dashboard",
           style: TextStyle(
               fontSize: 22,
-              color: Colors.black,
+              color: Colors.white,
               fontWeight: FontWeight.bold,
               fontFamily: 't3',
               letterSpacing: 1),
         ),
-        elevation: 10,
-        shadowColor: Colors.black,
-        leading: Image.asset(
-          'assets/menu_burger.png',
-        ),
+        elevation: 0,
+        shadowColor: Colors.white,
+
         actions: [
           GestureDetector(
             onTap: () => showDialog(
@@ -369,7 +368,7 @@ class _MeditationPageState extends State<MeditationPage> {
                           shadowColor: Colors.black,
                           icon: const Icon(
                             Icons.auto_graph_sharp,
-                            color: Colors.black,
+                            color: Colors.white,
                             size: 30,
                           ),
                           title: user1 != null
@@ -430,7 +429,7 @@ class _MeditationPageState extends State<MeditationPage> {
         ],
       ),
       body: Container(
-        color: Colors.white,
+        color: ColorManager.backgroundColor,
         padding: const EdgeInsets.only(top: 12, left: 12, right: 12),
         child: SingleChildScrollView(
           child: Column(
@@ -460,6 +459,7 @@ class _MeditationPageState extends State<MeditationPage> {
                         : Text(
                             "Welcome Back, ${user2?.displayName}",
                             softWrap: true,
+
                             maxLines: 2,
                             overflow: TextOverflow.clip,
                             style: Theme.of(context).textTheme.titleLarge,
@@ -580,12 +580,12 @@ class _MeditationPageState extends State<MeditationPage> {
                     return TaskCard(
                         title: "Good Afternoon",
                         description: state.dailyQuote.noonQuote,
-                        color: DefaultColors.task2);
+                        color: Colors.green);
                   } else {
                     return TaskCard(
                         title: "Good Evening",
                         description: state.dailyQuote.eveningQuote,
-                        color: DefaultColors.task3);
+                        color: Colors.green);
                   }
                 } else if (state is DailyQuoteError) {
                   return Center(
@@ -616,319 +616,7 @@ class _MeditationPageState extends State<MeditationPage> {
                   );
                 }
               }),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Today's status",
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium!
-                        .copyWith(fontWeight: FontWeight.bold),
-                  ),
-                  IconButton(
-                      onPressed: () {
-                        context.read<DailyQuoteBloc>().add(FetchDailyQuote());
-                      },
-                      icon: const Icon(
-                        Icons.refresh_rounded,
-                        color: DefaultColors.orange,
-                      ))
-                ],
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.blueGrey.shade100.withOpacity(0.8),
-                          borderRadius: BorderRadius.circular(20),
-                          border: const Border(
-                              bottom: BorderSide(color: Colors.black),
-                              top: BorderSide(color: Colors.black),
-                              left: BorderSide(color: Colors.black),
-                              right: BorderSide(color: Colors.black))),
-                      height: 200,
-                      child: const Padding(
-                        padding: EdgeInsets.all(15.0),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Icon(
-                                  Icons.apple,
-                                  size: 60,
-                                ),
-                                // SizedBox(width: MediaQuery.of(context).size.width/60),
-                                SizedBox(width: 1),
-                                Text(
-                                  "Food",
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 32),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "1185 of 2400 cals consumed",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 20),
-                              softWrap: true,
-                              textAlign: TextAlign.center,
-                            ),
-                            //progres bar
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.blueGrey.shade100.withOpacity(0.8),
-                          borderRadius: BorderRadius.circular(20),
-                          border: const Border(
-                              bottom: BorderSide(color: Colors.black),
-                              top: BorderSide(color: Colors.black),
-                              left: BorderSide(color: Colors.black),
-                              right: BorderSide(color: Colors.black))),
-                      height: 200,
-                      child: const Padding(
-                        padding: EdgeInsets.all(20.0),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Icon(
-                                  Icons.water_drop_outlined,
-                                  size: 50,
-                                ),
-                                SizedBox(width: 1),
-                                Text(
-                                  "Water",
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 32),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "You drank 4 glasses of water out of 6",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 20),
-                              softWrap: true,
-                              textAlign: TextAlign.center,
-                            ),
-                            //progres bar
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.lightBlue.shade100.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(20),
-                    border: const Border(
-                        bottom: BorderSide(color: Colors.black),
-                        top: BorderSide(color: Colors.black),
-                        left: BorderSide(color: Colors.black),
-                        right: BorderSide(color: Colors.black))),
-                child: Column(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.all(20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.face,
-                            size: 30,
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            "Overall Health Analysis",
-                            style: TextStyle(color: Colors.black, fontSize: 30),
-                            softWrap: true,
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Text(
-                      "The total overall mood is happy 75% times",
-                      style: TextStyle(color: Colors.black, fontSize: 20),
-                      softWrap: true,
-                      textAlign: TextAlign.center,
-                    ),
-                    //graph
-                    valobatained == 'true'
-                        ? const SizedBox(
-                            height: 50,
-                            child: Text(
-                              "No data",
-                              style: TextStyle(color: Colors.red),
-                            ),
-                          )
-                        : BlocBuilder<MoodDataBloc, MoodDataState>(
-                            builder: (context, state) {
-                            if (state is MoodDataLoaded) {
-                              __chartData = <ChartSampleData>[
-                                ChartSampleData(
-                                    x: 'Mon',
-                                    y: num.parse(state.moodDatainfo.happy),
-                                    secondSeriesYValue:
-                                        num.parse(state.moodDatainfo.neutral),
-                                    thirdSeriesYValue:
-                                        num.parse(state.moodDatainfo.calm)),
-                                ChartSampleData(
-                                    x: 'Tue',
-                                    y: num.parse(state.moodDatainfo.happy),
-                                    secondSeriesYValue:
-                                        num.parse(state.moodDatainfo.neutral),
-                                    thirdSeriesYValue:
-                                        num.parse(state.moodDatainfo.calm)),
-                                ChartSampleData(
-                                    x: 'Wed',
-                                    y: num.parse(state.moodDatainfo.happy),
-                                    secondSeriesYValue:
-                                        num.parse(state.moodDatainfo.neutral),
-                                    thirdSeriesYValue:
-                                        num.parse(state.moodDatainfo.calm)),
-                                ChartSampleData(
-                                    x: 'Thurs',
-                                    y: num.parse(state.moodDatainfo.happy),
-                                    secondSeriesYValue:
-                                        num.parse(state.moodDatainfo.neutral),
-                                    thirdSeriesYValue:
-                                        num.parse(state.moodDatainfo.calm)),
-                                ChartSampleData(
-                                    x: 'Fri',
-                                    y: num.parse(state.moodDatainfo.happy),
-                                    secondSeriesYValue:
-                                        num.parse(state.moodDatainfo.neutral),
-                                    thirdSeriesYValue:
-                                        num.parse(state.moodDatainfo.calm)),
-                                ChartSampleData(
-                                    x: 'Sat',
-                                    y: num.parse(state.moodDatainfo.happy),
-                                    secondSeriesYValue:
-                                        num.parse(state.moodDatainfo.neutral),
-                                    thirdSeriesYValue:
-                                        num.parse(state.moodDatainfo.calm)),
-                                ChartSampleData(
-                                    x: 'Sun',
-                                    y: num.parse(state.moodDatainfo.happy),
-                                    secondSeriesYValue:
-                                        num.parse(state.moodDatainfo.neutral),
-                                    thirdSeriesYValue:
-                                        num.parse(state.moodDatainfo.calm)),
-                              ];
 
-                              num total = num.parse(state.moodDatainfo.happy) +
-                                  num.parse(state.moodDatainfo.neutral) +
-                                  num.parse(state.moodDatainfo.sad) +
-                                  num.parse(state.moodDatainfo.calm) +
-                                  num.parse(state.moodDatainfo.relax) +
-                                  num.parse(state.moodDatainfo.focus);
-                              dataSources = <ChartSampleData>[
-                                ChartSampleData(
-                                    x: 'Happy',
-                                    y: num.parse(state.moodDatainfo.happy) /
-                                        total,
-                                    text: '10%',
-                                    pointColor: const Color.fromRGBO(
-                                        69, 186, 161, 1.0)),
-                                ChartSampleData(
-                                    x: 'Neutral',
-                                    y: num.parse(state.moodDatainfo.neutral) /
-                                        total,
-                                    text: '10%',
-                                    pointColor: const Color.fromRGBO(
-                                        230, 135, 111, 1.0)),
-                                ChartSampleData(
-                                    x: 'Sad',
-                                    y: num.parse(state.moodDatainfo.sad) /
-                                        total,
-                                    text: '100%',
-                                    pointColor: const Color.fromRGBO(
-                                        145, 132, 202, 1.0)),
-                                ChartSampleData(
-                                    x: 'Calm',
-                                    y: num.parse(state.moodDatainfo.calm) /
-                                        total,
-                                    text: '100%',
-                                    pointColor: const Color.fromRGBO(
-                                        145, 132, 202, 1.0)),
-                                ChartSampleData(
-                                    x: 'Relax',
-                                    y: num.parse(state.moodDatainfo.relax) /
-                                        total,
-                                    text: '100%',
-                                    pointColor: const Color.fromRGBO(
-                                        145, 132, 202, 1.0)),
-                                ChartSampleData(
-                                    x: 'Focus',
-                                    y: num.parse(state.moodDatainfo.focus) /
-                                        total,
-                                    text: '100%',
-                                    pointColor:
-                                        const Color.fromRGBO(235, 96, 143, 1.0))
-                              ];
-                              try {
-                                return _buildColumnChart();
-                              } catch (error) {
-                                return const Text("ERROR LOADING");
-                              }
-                            }
-                            if (state is MoodDataLoading) {
-                              return const Text("loading");
-                            }
-
-                            if (state is MoodDataError) {
-                              return const Text(
-                                "No Data Found",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.bold),
-                              );
-                            }
-                            return const SizedBox(
-                              height: 50,
-                              child: Text(
-                                "No data",
-                                style: TextStyle(color: Colors.red),
-                              ),
-                            );
-                          })
-                  ],
-                ),
-              ),
               const SizedBox(
                 height: 100,
               ),
@@ -938,9 +626,10 @@ class _MeditationPageState extends State<MeditationPage> {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
                       showDialog(
                           barrierDismissible: false,
-                          barrierColor: Colors.blueGrey.withOpacity(0.6),
+                          barrierColor: Colors.green.withOpacity(0.6),
                           context: context,
                           builder: (context) => AlertDialog(
+                            backgroundColor: ColorManager.backgroundColor,
                                 elevation: 30,
                                 shadowColor: Colors.blueGrey,
                                 title: Text(
@@ -948,14 +637,14 @@ class _MeditationPageState extends State<MeditationPage> {
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelMedium!
-                                      .copyWith(fontWeight: FontWeight.bold),
+                                      .copyWith(fontWeight: FontWeight.bold,color: Colors.green),
                                 ),
                                 content: Text(state.moodMessage.text,
                                     style: Theme.of(context)
                                         .textTheme
                                         .labelSmall!
                                         .copyWith(
-                                            fontSize: 18, color: Colors.black)),
+                                            fontSize: 18, color: Colors.white)),
                                 actions: [
                                   TextButton(
                                       onPressed: () {
