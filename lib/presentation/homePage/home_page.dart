@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
   final List<Widget> pages = [
     const MeditationPage(),
     FaceEmotionDetector(),
-    Playlistscreen(),
+    PlaylistScreen(),
     const SettingScreen(),
   ];
   static Map<String, String> mappings = {

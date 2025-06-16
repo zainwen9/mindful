@@ -18,9 +18,12 @@ import 'package:mental_health/features/music/presentation/bloc/song_event.dart';
 import 'package:mental_health/firebase_options.dart';
 import 'package:mental_health/presentation/bottomNavBar/bloc/nav_bloc.dart';
 import 'package:mental_health/presentation/homePage/home_page.dart';
-import 'package:mental_health/presentation/onboarding/onboarding.dart';
 import 'package:mental_health/presentation/splashScreen/splashScreen.dart';
+import 'package:mental_health/provider/localDataProvider.dart';
+import 'package:mental_health/provider/storiesProvider.dart';
+import 'package:provider/provider.dart';
 import 'injections.dart' as di;
+
 
 void main() async {
   await Hive.initFlutter();
@@ -41,17 +44,16 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   late StreamSubscription<User?> user;
+
   @override
   void initState() {
     user = FirebaseAuth.instance.authStateChanges().listen((user) {});
-
     super.initState();
   }
 
   @override
   void dispose() {
     user.cancel();
-    // TODO: implement dispose
     super.dispose();
   }
 
@@ -63,29 +65,37 @@ class _MyAppState extends State<MyApp> {
     first.put('firsttime', 'false');
     bool google = mybox.get('google').toString() == 'true';
     if (google == true) {
-      idval = "aryasingh8405@gmail.com-google"; //temp
+      idval = "aryasingh8405@gmail.com-google"; // temp
     } else {
       idval = FirebaseAuth.instance.currentUser?.email.toString();
     }
-    return MultiBlocProvider(
+
+    return MultiProvider(
       providers: [
-        BlocProvider(create: (_) => NavBloc()),
-        BlocProvider(create: (context) => di.sl<SongBloc>()..add(FetchSongs())),
-        BlocProvider(
-            create: (context) =>
-                di.sl<DailyQuoteBloc>()..add(FetchDailyQuote())),
-        BlocProvider(create: (context) => di.sl<MoodMessageBloc>()),
-        BlocProvider(create: (context) => di.sl<MoodDataBloc>()),
+        // Add both StoriesProvider and LocalDataProvider
+        ChangeNotifierProvider(create: (_) => StoriesProvider()),
+        ChangeNotifierProvider(create: (_) => LocalDataProvider()), // Add LocalDataProvider
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Mental Health',
-        theme: AppTheme.lightTheme,
-        home: (FirebaseAuth.instance.currentUser == null)
-            ? google
-                ? const inPage()
-                : const SplashScreenView()
-           : HomePage(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (_) => NavBloc()),
+          BlocProvider(create: (context) => di.sl<SongBloc>()..add(FetchSongs())),
+          BlocProvider(
+              create: (context) =>
+              di.sl<DailyQuoteBloc>()..add(FetchDailyQuote())),
+          BlocProvider(create: (context) => di.sl<MoodMessageBloc>()),
+          BlocProvider(create: (context) => di.sl<MoodDataBloc>()),
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Mental Health',
+          theme: AppTheme.lightTheme,
+          home: (FirebaseAuth.instance.currentUser == null)
+              ? google
+              ? const inPage()
+              : const SplashScreenView()
+              :  HomePage(),
+        ),
       ),
     );
   }
@@ -116,14 +126,13 @@ class _inPageState extends State<inPage> {
       } catch (error) {}
       Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (BuildContext context) => HomePage()),
-          (route) => false);
+          MaterialPageRoute(builder: (BuildContext context) =>  HomePage()),
+              (route) => false);
     }
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     signIn();
     Future.delayed(const Duration(seconds: 2));
     super.initState();
